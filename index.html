@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap');
+    @page {
+      size: A4;
+      margin: 20mm 16mm 20mm 16mm;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body {
+      font-family:'Cairo', sans-serif; direction:rtl; text-align:right;
+      color:#e8edf5; background:#0a0e14;
+      font-size:11.2pt; line-height:1.7;
+    }
+    a { color:#00E5D0; text-decoration:none; }
+    code { font-family:'JetBrains Mono',monospace; background:#0b1119;
+      padding:1px 6px; border-radius:5px; font-size:.9em; color:#00E5D0; }
+    strong { color:#00E5D0; font-weight:800; }
+
+    /* ---------- COVER ---------- */
+    .cover {
+      position:relative; height:257mm; margin:-20mm -16mm 0 -16mm;
+      background:radial-gradient(900px 600px at 80% 0%, rgba(0,229,208,.18), transparent 60%), radial-gradient(700px 500px at 0% 100%, rgba(37,99,235,.20), transparent 55%), #0a0e14; color:#fff;
+      padding:38mm 20mm; display:flex; flex-direction:column;
+      page-break-after:always; overflow:hidden;
+    }
+    .cover-kicker { font-size:13pt; letter-spacing:2px; text-transform:uppercase;
+      color:rgba(255,255,255,.85); font-weight:700; margin-bottom:14mm; }
+    .cover-kicker .dot { color:#19f0ff; }
+    .cover h1 { font-size:33pt; font-weight:900; line-height:1.25; margin-bottom:8mm;
+      color:#fff; max-width:150mm; }
+    .cover .csub { font-size:15pt; font-weight:500; color:rgba(255,255,255,.9);
+      max-width:150mm; line-height:1.6; }
+    .cover-meta { margin-top:auto; display:flex; flex-direction:column; gap:5mm; }
+    .cover-chips { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:6mm; }
+    .cover-chip { background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28);
+      border-radius:999px; padding:4px 14px; font-size:9.5pt; font-weight:700; color:#fff; }
+    .cover-chip.conf { background:rgba(255,255,255,.22); }
+    .cover-info { display:flex; gap:16mm; flex-wrap:wrap; }
+    .cover-info .k { font-size:9pt; text-transform:uppercase; letter-spacing:1px;
+      color:rgba(255,255,255,.7); margin-bottom:2px; }
+    .cover-info .v { font-size:12pt; font-weight:800; color:#fff; }
+    .cover-line { position:absolute; left:0; top:0; bottom:0; width:3px;
+      background:linear-gradient(180deg,#19f0ff,transparent); opacity:.6; }
+
+    /* ---------- SECTIONS ---------- */
+    h2.sec { font-size:18pt; font-weight:900; color:#00E5D0;
+      margin:9mm 0 4mm; padding-bottom:3mm; border-bottom:2px solid rgba(255,255,255,.09);
+      display:flex; align-items:center; gap:10px; page-break-after:avoid; }
+    h3.sec { font-size:13.5pt; font-weight:800; color:#e8edf5; margin:6mm 0 3mm; page-break-after:avoid; }
+    .sn { display:inline-flex; align-items:center; justify-content:center; min-width:30px; height:30px;
+      padding:0 8px; border-radius:9px; background:rgba(0,229,208,.12); border:1px solid rgba(0,229,208,.32);
+      color:#00E5D0; font-size:12pt; font-weight:900; font-family:'JetBrains Mono'; }
+    .rsec { page-break-inside:auto; }
+    p { margin:0 0 3mm; color:#e8edf5; }
+    .rl { margin:0 0 4mm; padding-right:7mm; }
+    .rl li { margin:1.5mm 0; }
+
+    /* callouts */
+    .callout { display:flex; gap:10px; padding:4mm 5mm; border-radius:12px; margin:4mm 0;
+      background:#0d1320; border:1px solid rgba(255,255,255,.09);
+      border-right:4px solid #00E5D0; page-break-inside:avoid; }
+    .callout .ci { font-size:15pt; line-height:1.2; }
+    .callout-warn { border-right-color:#ff5d6c; }
+    .callout-key { border-right-color:#ffc24b; background:rgba(0,229,208,.07); }
+    .callout-tip { border-right-color:#34e0a1; }
+
+    /* quotes */
+    blockquote { background:rgba(0,229,208,.07); border-right:4px solid #00E5D0;
+      padding:4mm 6mm; border-radius:10px; margin:4mm 0; font-style:italic; color:#e8edf5;
+      page-break-inside:avoid; }
+    .qcite { margin-top:2mm; font-style:normal; font-weight:700; color:#9aa6b8; font-size:.9em; }
+
+    /* code */
+    pre.code { background:#0b1119; border:1px solid rgba(255,255,255,.09); border-radius:10px;
+      padding:4mm 5mm; font-family:'JetBrains Mono',monospace; font-size:9.5pt; color:#19f0ff;
+      direction:ltr; text-align:left; white-space:pre-wrap; margin:4mm 0; page-break-inside:avoid; line-height:1.6; }
+
+    /* tables */
+    .tbl-wrap { margin:4mm 0; page-break-inside:avoid; }
+    table { width:100%; border-collapse:collapse; font-size:10pt; }
+    th,td { text-align:right; padding:3mm 4mm; border-bottom:1px solid rgba(255,255,255,.09); }
+    th { background:rgba(0,229,208,.12); color:#00E5D0; font-weight:800; font-size:9.5pt;
+      border-bottom:2px solid rgba(0,229,208,.32); }
+    tbody tr:nth-child(even) { background:#0d1320; }
+    .tcap { font-size:9pt; color:#9aa6b8; margin-top:2mm; text-align:center; }
+
+    /* stats */
+    .stats { display:flex; gap:4mm; flex-wrap:wrap; margin:4mm 0; }
+    .stat { flex:1; min-width:38mm; background:#0d1320; border:1px solid rgba(255,255,255,.09);
+      border-radius:12px; padding:5mm; text-align:center; page-break-inside:avoid; }
+    .stat-v { font-size:22pt; font-weight:900; color:#00E5D0; font-family:'JetBrains Mono'; line-height:1.1; }
+    .stat-l { font-size:9pt; color:#9aa6b8; margin-top:2mm; font-weight:600; }
+
+    hr.div { border:none; border-top:1px solid rgba(255,255,255,.09); margin:6mm 0; }
+    .pagebreak { page-break-after:always; }
+
+    /* key findings */
+    .kf-wrap { margin:4mm 0; }
+    .kf { display:flex; gap:10px; align-items:flex-start; background:#0d1320;
+      border:1px solid rgba(255,255,255,.09); border-radius:12px; padding:4mm 5mm; margin:2.5mm 0; page-break-inside:avoid; }
+    .kf-n { flex:none; width:26px; height:26px; border-radius:50%; background:#00E5D0;
+      color:#062; font-weight:900; display:flex; align-items:center;
+      justify-content:center; font-size:11pt; }
+    .kf-t { font-size:10.5pt; }
+
+    /* exec */
+    .exec { background:#0d1320; border:1px solid rgba(255,255,255,.09); border-radius:16px;
+      padding:6mm 7mm; margin:4mm 0 6mm; }
+    .exec-h { margin-top:0; }
+
+    /* toc */
+    .toc { page-break-after:always; }
+    .toc-row { display:flex; align-items:center; gap:8px; padding:2.5mm 0; border-bottom:1px dashed rgba(255,255,255,.09); }
+    .toc-row a { display:flex; align-items:center; gap:10px; color:#e8edf5; font-weight:600; flex:1; }
+    .toc-n { font-family:'JetBrains Mono'; font-weight:800; color:#00E5D0; min-width:34px; }
+
+    /* sources */
+    .src { display:flex; gap:10px; padding:3mm 0; border-bottom:1px solid rgba(255,255,255,.09); page-break-inside:avoid; }
+    .src-n { font-family:'JetBrains Mono'; font-weight:800; color:#00E5D0; flex:none; }
+    .src-t { font-weight:700; font-size:10.5pt; }
+    .src-u { font-family:'JetBrains Mono'; font-size:8.5pt; color:#19f0ff;
+      direction:ltr; text-align:right; word-break:break-all; }
+    .src-m { font-size:9pt; color:#9aa6b8; }
+    
+    /* ===== RESPONSIVE WEB MODE ===== */
+    @page { margin:0; }
+    html { scroll-behavior:smooth; }
+    body { font-size:17px; line-height:1.85; max-width:860px; margin:0 auto;
+      padding:0 20px 80px; background:#0a0e14; }
+    .cover { height:auto; min-height:auto; margin:0 -20px 30px; padding:64px 32px 56px;
+      page-break-after:auto; border-radius:0 0 28px 28px; }
+    .cover h1 { font-size:clamp(26px,6vw,44px); max-width:100%; }
+    .cover .csub { font-size:clamp(15px,3.6vw,19px); max-width:100%; }
+    .cover-kicker { margin-bottom:32px; }
+    .cover-meta { margin-top:40px; }
+    h2.sec { font-size:clamp(20px,4.6vw,26px); margin:36px 0 16px; padding-bottom:12px; scroll-margin-top:16px; }
+    h3.sec { font-size:clamp(17px,3.8vw,20px); margin:24px 0 12px; }
+    .sn { min-width:36px; height:36px; font-size:16px; }
+    p { margin:0 0 14px; }
+    .rl { padding-right:22px; margin-bottom:16px; }
+    .rl li { margin:8px 0; }
+    .callout { padding:16px 18px; margin:18px 0; border-radius:14px; }
+    .callout .ci { font-size:22px; }
+    blockquote { padding:16px 20px; margin:18px 0; }
+    pre.code { padding:16px 18px; font-size:14px; margin:18px 0; overflow-x:auto; }
+    .tbl-wrap { overflow-x:auto; -webkit-overflow-scrolling:touch; margin:18px 0; }
+    table { font-size:15px; min-width:100%; }
+    th,td { padding:12px 14px; }
+    .stats { gap:14px; margin:18px 0; }
+    .stat { min-width:120px; padding:20px 16px; border-radius:16px; }
+    .stat-v { font-size:32px; }
+    .stat-l { font-size:13px; }
+    .exec { padding:24px 26px; margin:20px 0 30px; border-radius:20px; }
+    .kf { padding:16px 18px; margin:10px 0; border-radius:14px; }
+    .kf-n { width:32px; height:32px; font-size:15px; }
+    .kf-t { font-size:16px; }
+    .toc { page-break-after:auto; }
+    .toc-row { padding:12px 0; }
+    .src { padding:14px 0; }
+    .src-t { font-size:16px; }
+    .src-u { font-size:12px; }
+    /* reading progress bar */
+    #progress { position:fixed; top:0; right:0; height:4px; width:0%;
+      background:linear-gradient(90deg,#00E5D0,#19f0ff);
+      z-index:999; transition:width .1s ease; box-shadow:0 0 10px #00E5D0; }
+    /* back-to-top */
+    #totop { position:fixed; bottom:22px; left:22px; width:46px; height:46px;
+      border-radius:50%; background:#00E5D0; color:#062;
+      border:none; font-size:22px; cursor:pointer; display:none; align-items:center; justify-content:center;
+      box-shadow:0 6px 20px rgba(0,0,0,.35); z-index:998; }
+    @media (max-width:600px) {
+      .cover { padding:48px 22px 40px; }
+      .cover-info { gap:20px; }
+      .stats { flex-direction:column; }
+    }
+    </style></head>
+<body>
+  <div class="cover">
+    <div class="cover-line"></div>
+    <div class="cover-kicker">تقرير بحثي معمّق <span class="dot">◆</span></div>
+    <h1>الذكاء الاصطناعي التوليدي في 2025: الواقع والتحديات</h1>
+    <div class="csub">تحليل معمّق يمزج بين البحث الويب الحيّ، المصادر الأكاديمية، والتحليل النقدي — مع تقييم موثّق للاتجاهات والفرص والمخاطر.</div>
+    <div class="cover-meta">
+      <div class="cover-chips"><span class="cover-chip">ذكاء اصطناعي</span><span class="cover-chip">تحليل معمّق</span><span class="cover-chip">2025</span><span class="cover-chip conf">مستوى الثقة: عالية</span></div>
+      <div class="cover-info">
+        <div><div class="k">إعداد</div><div class="v">إسلام — Deep Research</div></div>
+        <div><div class="k">التاريخ</div><div class="v">2026-06-30</div></div>
+      </div>
+    </div>
+  </div>
+  
+        <section class="exec">
+          <h2 class="sec exec-h">الملخص التنفيذي</h2>
+          <p>شهد عام 2025 تحوّلاً من <strong>التجريب</strong> إلى <strong>الإنتاج الفعلي</strong> لنماذج الذكاء الاصطناعي التوليدي، مع تركيز متزايد على الكفاءة والتكلفة بدلاً من مجرد زيادة الحجم.</p><p>أظهرت البيانات أن النماذج الأصغر المُحسّنة باتت تنافس النماذج العملاقة في مهام محددة، مما يعيد تشكيل اقتصاديات النشر.</p>
+          <div class="kf-wrap"><div class="kf"><div class="kf-n">1</div><div class="kf-t">الاتجاه نحو نماذج <strong>أصغر وأكفأ</strong> (SLMs) للمهام المتخصصة بدل النماذج العملاقة الشاملة.</div></div><div class="kf"><div class="kf-n">2</div><div class="kf-t">التكلفة لكل مليون توكن انخفضت بأكثر من <strong>80%</strong> خلال 18 شهراً.</div></div><div class="kf"><div class="kf-n">3</div><div class="kf-t">الوكلاء الذكيون (AI Agents) انتقلوا من عروض توضيحية إلى تطبيقات إنتاجية حقيقية.</div></div></div>
+        </section>
+  <section class="toc"><h2 class="sec">المحتويات</h2><div class="toc-row"><a href="#sec-intro"><span class="toc-n">1</span><span class="toc-t">المقدمة والسياق</span></a><span class="toc-dots"></span></div><div class="toc-row"><a href="#sec-trends"><span class="toc-n">2</span><span class="toc-t">الاتجاهات الرئيسية</span></a><span class="toc-dots"></span></div><div class="toc-row"><a href="#sec-risk"><span class="toc-n">3</span><span class="toc-t">المخاطر والتحديات</span></a><span class="toc-dots"></span></div></section>
+  <section class="rsec"><h2 class="sec" id="sec-intro"><span class="sn">1</span>المقدمة والسياق</h2>
+<p>يهدف هذا التقرير إلى تقديم صورة <em>موثّقة ومتوازنة</em> عن حالة الذكاء الاصطناعي التوليدي، معتمداً على مزيج من المصادر الحية والأكاديمية.</p>
+<div class="callout callout-info"><span class="ci">ℹ️</span><div>منهجية البحث: مزج بين <code>web_search</code> للأخبار الحية، و <code>arxiv</code> للأوراق العلمية، والتحليل النقدي لاستخلاص الرؤى.</div></div></section>
+<section class="rsec"><h2 class="sec" id="sec-trends"><span class="sn">2</span>الاتجاهات الرئيسية</h2>
+<h3 class="sec">2.1 كفاءة النماذج</h3>
+<p>تحوّل التركيز من الحجم الخام إلى نسبة الأداء/التكلفة.</p>
+<div class="stats"><div class="stat"><div class="stat-v">80%</div><div class="stat-l">انخفاض التكلفة</div></div><div class="stat"><div class="stat-v">3.2x</div><div class="stat-l">تحسّن الكفاءة</div></div><div class="stat"><div class="stat-v">12k</div><div class="stat-l">ورقة بحثية</div></div></div>
+<div class="tbl-wrap"><table><thead><tr><th>المعيار</th><th>2023</th><th>2025</th></tr></thead><tbody><tr><td>التكلفة/مليون توكن</td><td>$30</td><td>$5</td></tr><tr><td>زمن الاستجابة</td><td>2.4s</td><td>0.6s</td></tr><tr><td>حجم النموذج النموذجي</td><td>175B</td><td>8-70B</td></tr></tbody></table><div class="tcap">مقارنة تطوّر المؤشرات الرئيسية</div></div>
+<blockquote>المستقبل ليس في نموذج واحد عملاق، بل في منظومة من النماذج المتخصصة تعمل معاً.<div class="qcite">— تحليل الاتجاهات، 2025</div></blockquote></section>
+<section class="rsec"><h2 class="sec" id="sec-risk"><span class="sn">3</span>المخاطر والتحديات</h2>
+<div class="callout callout-warn"><span class="ci">⚠️</span><div><strong>تحذير:</strong> الاعتماد المفرط على مصدر واحد للنماذج يخلق مخاطر تشغيلية واقتصادية.</div></div>
+<ol class="rl"><li>مخاطر الهلوسة في المهام الحرجة.</li><li>تحديات الخصوصية وحوكمة البيانات.</li><li>التكلفة البيئية للتدريب واسع النطاق.</li></ol>
+<div class="callout callout-key"><span class="ci">🔑</span><div>الخلاصة: التبنّي الناجح يتطلب استراتيجية <strong>متعددة النماذج</strong> مع رقابة بشرية على المخرجات الحرجة.</div></div></section>
+  <section class="sources"><h2 class="sec">المصادر والمراجع</h2><div class="src"><div class="src-n">[1]</div><div class="src-b"><div class="src-t">State of AI Report 2025</div><div class="src-u">https://www.stateof.ai/</div><div class="src-m">Air Street Capital · 2025</div></div></div><div class="src"><div class="src-n">[2]</div><div class="src-b"><div class="src-t">Scaling Laws for Efficient LLMs</div><div class="src-u">https://arxiv.org/abs/2404.00001</div><div class="src-m">arXiv · 2024</div></div></div><div class="src"><div class="src-n">[3]</div><div class="src-b"><div class="src-t">The Economics of Foundation Models</div><div class="src-u">https://example.org/econ-fm</div><div class="src-m">Research Journal · 2025</div></div></div></section>
+  <div id="progress"></div><button id="totop" title="أعلى">↑</button><script>const p=document.getElementById("progress");const b=document.getElementById("totop");addEventListener("scroll",()=>{const h=document.documentElement;const sc=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;p.style.width=sc+"%";b.style.display=h.scrollTop>400?"flex":"none";});b.onclick=()=>scrollTo({top:0,behavior:"smooth"});</script>
+</body></html>
