@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>
-    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap');
     @page {
       size: A4;
       margin: 20mm 16mm 20mm 16mm;
@@ -9,7 +9,7 @@
     * { margin:0; padding:0; box-sizing:border-box; }
     html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     body {
-      font-family:'Cairo', sans-serif; direction:rtl; text-align:right;
+      font-family:'IBM Plex Sans Arabic', sans-serif; direction:rtl; text-align:right;
       color:#e8edf5; background:#0a0e14;
       font-size:11.2pt; line-height:1.7;
     }
@@ -175,6 +175,32 @@
       .cover-info { gap:20px; }
       .stats { flex-direction:column; }
     }
+    /* theme toggle button */
+    #themebtn { position:fixed; top:14px; left:14px; z-index:1000;
+      background:rgba(127,127,127,.18); border:1px solid rgba(127,127,127,.35); color:#fff;
+      backdrop-filter:blur(8px); border-radius:999px; padding:8px 16px; font-size:14px;
+      font-weight:700; cursor:pointer; font-family:inherit; }
+    
+    /* ===== ALT THEME (toggled) ===== */
+    [data-theme="alt"] body { background:#ffffff; color:#14202e; }
+    [data-theme="alt"] p, [data-theme="alt"] .kf-t, [data-theme="alt"] li { color:#14202e; }
+    [data-theme="alt"] h2.sec { color:#0b3d91; border-bottom-color:#dde5ee; }
+    [data-theme="alt"] h3.sec { color:#14202e; }
+    [data-theme="alt"] strong { color:#0b3d91; }
+    [data-theme="alt"] a, [data-theme="alt"] .sn, [data-theme="alt"] .toc-n,
+    [data-theme="alt"] .src-n, [data-theme="alt"] .stat-v { color:#1e5fbf; }
+    [data-theme="alt"] .cover { background:linear-gradient(135deg, #0b3d91 0%, #1e5fbf 55%, #2f80ed 100%); }
+    [data-theme="alt"] .exec, [data-theme="alt"] .stat, [data-theme="alt"] .kf,
+    [data-theme="alt"] .callout { background:#f7fafd; border-color:#dde5ee; }
+    [data-theme="alt"] blockquote { background:#eef4fc; border-inline-start-color:#1e5fbf; }
+    [data-theme="alt"] pre.code { background:#f2f5f9; border-color:#dde5ee;
+      color:#0b3d91; }
+    [data-theme="alt"] th { background:#eaf1fc; color:#1e5fbf; border-bottom-color:#c3d8f5; }
+    [data-theme="alt"] td { border-bottom-color:#dde5ee; }
+    [data-theme="alt"] tbody tr:nth-child(even) { background:#f7fafd; }
+    [data-theme="alt"] .sn { background:#eaf1fc; border-color:#c3d8f5; }
+    [data-theme="alt"] .kf-n { background:#1e5fbf; color:#fff; }
+    [data-theme="alt"] .muted, [data-theme="alt"] .src-m, [data-theme="alt"] .stat-l { color:#5b6b7d; }
     </style></head>
 <body>
   <div class="cover">
@@ -211,5 +237,5 @@
 <ol class="rl"><li>مخاطر الهلوسة في المهام الحرجة.</li><li>تحديات الخصوصية وحوكمة البيانات.</li><li>التكلفة البيئية للتدريب واسع النطاق.</li></ol>
 <div class="callout callout-key"><span class="ci">🔑</span><div>الخلاصة: التبنّي الناجح يتطلب استراتيجية <strong>متعددة النماذج</strong> مع رقابة بشرية على المخرجات الحرجة.</div></div></section>
   <section class="sources"><h2 class="sec">المصادر والمراجع</h2><div class="src"><div class="src-n">[1]</div><div class="src-b"><div class="src-t">State of AI Report 2025</div><div class="src-u">https://www.stateof.ai/</div><div class="src-m">Air Street Capital · 2025</div></div></div><div class="src"><div class="src-n">[2]</div><div class="src-b"><div class="src-t">Scaling Laws for Efficient LLMs</div><div class="src-u">https://arxiv.org/abs/2404.00001</div><div class="src-m">arXiv · 2024</div></div></div><div class="src"><div class="src-n">[3]</div><div class="src-b"><div class="src-t">The Economics of Foundation Models</div><div class="src-u">https://example.org/econ-fm</div><div class="src-m">Research Journal · 2025</div></div></div></section>
-  <div id="progress"></div><button id="totop" title="أعلى">↑</button><script>const p=document.getElementById("progress");const b=document.getElementById("totop");addEventListener("scroll",()=>{const h=document.documentElement;const sc=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;p.style.width=sc+"%";b.style.display=h.scrollTop>400?"flex":"none";});b.onclick=()=>scrollTo({top:0,behavior:"smooth"});</script>
+  <div id="progress"></div><button id="themebtn" title="Theme">☀️ فاتح / 🌙 غامق</button><button id="totop" title="أعلى">↑</button><script>const p=document.getElementById("progress");const b=document.getElementById("totop");const tb=document.getElementById("themebtn");const root=document.documentElement;if(localStorage.getItem("rtheme")=="alt")root.setAttribute("data-theme","alt");tb.onclick=()=>{const on=root.getAttribute("data-theme")=="alt";if(on){root.removeAttribute("data-theme");localStorage.setItem("rtheme","base");}else{root.setAttribute("data-theme","alt");localStorage.setItem("rtheme","alt");}};addEventListener("scroll",()=>{const h=document.documentElement;const sc=h.scrollTop/(h.scrollHeight-h.clientHeight)*100;p.style.width=sc+"%";b.style.display=h.scrollTop>400?"flex":"none";});b.onclick=()=>scrollTo({top:0,behavior:"smooth"});</script>
 </body></html>
